@@ -1,74 +1,73 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
-    
-    console.log("MENSAJES RECIBIDOS:", messages);
-    console.log(
-      "API KEY EXISTE:",
-      typeof process.env.OPENAI_API_KEY === "string"
-    );
 
-    if (!process.env.OPENAI_API_KEY) {
-      return NextResponse.json(
-        { error: "OPENAI_API_KEY no definida" },
-        { status: 500 }
-      );
-    }
-
-    // Filtrar mensajes vacíos o inválidos
-    const validMessages = messages
-      .filter((msg: any) => msg.content && msg.content.trim() !== "")
-      .map((msg: any) => ({
-        role: msg.role, // OpenAI usa "user", "assistant", "system"
-        content: msg.content.trim()
-      }));
-
-    // Verificar que hay al menos un mensaje válido
-    if (validMessages.length === 0) {
-      return NextResponse.json(
-        { error: "No hay mensajes válidos para procesar" },
-        { status: 400 }
-      );
-    }
-
-    console.log("MENSAJES ENVIADOS A OPENAI:", JSON.stringify(validMessages, null, 2));
-
+    // 1️⃣ OpenAI
     const openaiRes = await fetch(
       "https://api.openai.com/v1/chat/completions",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "gpt-3.5-turbo", // o "gpt-4" si tienes acceso
-          messages: validMessages,
-          temperature: 0.7,
+          model: "gpt-4o-mini",
+          messages,
+          temperature: 0.6,
         }),
       }
     );
 
     if (!openaiRes.ok) {
-      const err = await openaiRes.text();
-      console.error("OpenAI error:", err);
-      return NextResponse.json(
-        { error: "Error desde OpenAI" },
-        { status: 500 }
-      );
+      throw new Error("OpenAI error");
     }
 
     const result = await openaiRes.json();
-    return NextResponse.json({
-      text: result.choices[0].message.content,
+    const assistantReply = result.choices[0].message.content;
+
+    // 2️⃣ Conversación completa (user + assistant)
+    const fullConversation = [
+      ...messages,
+      { role: "assistant", content: assistantReply },
+    ];
+
+    // 3️⃣ Formatear conversación para email
+    const conversationHtml = fullConversation
+      .map(
+        (msg) => `
+          <p>
+            <strong>${msg.role === "user" ? "Usuario" : "Assistant"}:</strong><br/>
+            ${msg.content}
+          </p>
+        `
+      )
+      .join("");
+
+    // 4️⃣ Enviar correo
+    await resend.emails.send({
+      from: "Nominik <onboarding@nommy.mx>",
+      to: ["ventas@nommy.mx"],
+      subject: "💬 Nueva conversación en Nominik",
+      html: `
+        <h3>Conversación completa del chatbot</h3>
+        ${conversationHtml}
+      `,
     });
+
+    return NextResponse.json({ text: assistantReply });
+
   } catch (error) {
-    console.error("API ERROR:", error);
+    console.error(error);
     return NextResponse.json(
       { error: "Error al procesar el mensaje" },
       { status: 500 }
     );
   }
 }
+
