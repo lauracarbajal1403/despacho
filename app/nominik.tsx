@@ -36,7 +36,7 @@ export default function NominikChatbot() {
     if (isOpen && messages.length === 0) {
       setTimeout(() => {
         addBotMessage(
-           '¡Hola! Soy Nominik 👋, tu asistente virtual de Nommy. Estoy aquí para ayudarte con cualquier pregunta sobre nómina, RRHH o lo que necesites. ¿En qué puedo ayudarte hoy?<br/>Puedes consultar nuestro <a  href="https://drive.google.com/file/d/1cFTxtE8PW_hOgmomy2i56W1SArO7J-dV/view?usp=sharing" class ="text-[#4db8a8] font-semibold" target="_blank" rel="noopener noreferrer">aviso de privacidad</a>.'
+           '¡Hola! Soy Nominik 👋, tu asistente virtual de Nommy. Estoy aquí para ayudarte con cualquier pregunta sobre nómina, RRHH o lo que necesites. ¿En qué puedo ayudarte hoy?<br/>Puedes consultar nuestro <a  href="https://drive.google.com/file/d/1YaydY0xHt1kNv28WGSQoBp-I2-ZJ_CWk/view?usp=sharing" class ="text-[#4db8a8] font-semibold" target="_blank" rel="noopener noreferrer">aviso de privacidad</a>.'
         );
       }, 500);
     }
