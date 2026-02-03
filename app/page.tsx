@@ -391,7 +391,14 @@ export default function HomePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-left font-bold space-x-3 group hover:text-[#1e3a5f] transition-colors duration-300"
-              >Política de privacidad</a>
+              >Términos y condiciones</a>
+              <a
+                  className="hover:text-[#1e3a5f] transition-colors duration-300 text-sm mt-2 sm:mt-0"
+                  href="https://drive.google.com/file/d/1YaydY0xHt1kNv28WGSQoBp-I2-ZJ_CWk/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  
+                >Aviso de privacidad</a>
               <div className="flex gap-4">
                 <a
                   href="https://www.linkedin.com/in/nommy-m%C3%A9xico-a797a1376/?trk=public-profile-join-page"
