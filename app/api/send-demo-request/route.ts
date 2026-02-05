@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const recipient = recipientEmail || "contacto@nommy.mx"
+    const recipient = recipientEmail || "ventas@nommy.mx"
     console.log("[contact-form] Sending contact form to:", recipient)
 
     // Send email using MailService
