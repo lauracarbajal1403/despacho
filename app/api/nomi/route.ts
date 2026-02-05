@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { MailService } from "@/lib/mail.service";
 
 export async function POST(req: Request) {
   try {
@@ -59,22 +57,93 @@ export async function POST(req: Request) {
     const conversationHtml = fullConversation
       .map(
         (msg) => `
-        <p>
-          <strong>${msg.role === "user" ? "Usuario" : "Nominik"}:</strong><br/>
-          ${msg.content}
-        </p>
+        <div style="margin-bottom: 20px; padding: 15px; background-color: ${
+          msg.role === "user" ? "#f3f4f6" : "#e0f2fe"
+        }; border-radius: 8px;">
+          <strong style="color: ${
+            msg.role === "user" ? "#274263" : "#0369a1"
+          };">${msg.role === "user" ? "Usuario" : "Nominik"}:</strong><br/>
+          <p style="margin: 8px 0 0 0; color: #1f2937;">${msg.content}</p>
+        </div>
       `
       )
       .join("");
 
-    // 5️⃣ Enviar correo
-    await resend.emails.send({
-      from: "Nominik <onboarding@nommy.mx>",
-      to: ["ventas@nommy.mx"],
+    // 5️⃣ Enviar correo con MailService
+    await MailService.SendMail({
+      to: "ventas@nommy.mx",
       subject: "🧠 Nueva conversación – Asesoría solicitada",
       html: `
-        <h2>Conversación completa del chatbot</h2>
-        ${conversationHtml}
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body { 
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                line-height: 1.6; 
+                color: #333;
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5;
+              }
+              .container { 
+                max-width: 700px; 
+                margin: 40px auto; 
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              }
+              .header { 
+                background: linear-gradient(135deg, #274263 0%, #2DD4BF 100%); 
+                color: white; 
+                padding: 30px; 
+                text-align: center;
+              }
+              .header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+              }
+              .content { 
+                padding: 30px;
+              }
+              .footer { 
+                background: #f9fafb;
+                text-align: center; 
+                padding: 20px;
+                color: #6b7280; 
+                font-size: 13px;
+                border-top: 1px solid #e5e7eb;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>🧠 Nueva Conversación del Chatbot</h1>
+              </div>
+              <div class="content">
+                <h2 style="color: #274263; margin-top: 0;">Conversación completa</h2>
+                ${conversationHtml}
+              </div>
+              <div class="footer">
+                <p>📅 ${new Date().toLocaleDateString('es-MX', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}</p>
+                <p style="margin-top: 8px; color: #9ca3af;">
+                  Este correo fue enviado automáticamente desde el chatbot de NOMMY
+                </p>
+              </div>
+            </div>
+          </body>
+        </html>
       `,
     });
 
