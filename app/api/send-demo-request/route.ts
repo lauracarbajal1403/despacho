@@ -14,13 +14,13 @@ export async function POST(request: Request) {
 
     const body = await request.json()
 
-    const { nombre, correo,  telefono, empresa, giro, puesto, recipientEmail } = body
+    const { nombre, email,  telefono, empresa, giro, puesto, recipientEmail } = body
 
 
 
     // Validate required fields
 
-    if (!nombre || !correo || !telefono) {
+    if (!nombre || !email || !telefono) {
 
       return NextResponse.json(
 
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
               <p><strong>Nombre:</strong> ${nombre}</p>
 
-              <p><strong>Email:</strong> ${correo}</p>
+              <p><strong>Email:</strong> ${email}</p>
 
               <p><strong>Teléfono:</strong> ${telefono}</p>
               <p><strong>Empresa:</strong> ${empresa || "No proporcionada"}</p>
