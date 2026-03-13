@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
               <img src="/Nommy.png" alt="Nommy" style={{ width: '40px', height: '40px' }} />
-              <span style={{ fontSize: '20px', fontWeight: 700 }}>Nommy</span>
+             
             </div>
             
             <div style={{ display: 'flex', gap: '10px' }}>
