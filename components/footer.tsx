@@ -1,80 +1,83 @@
-import { Phone, Check, Linkedin, Globe, Facebook, Instagram } from 'lucide-react'
+"use client"
+import { Phone, Mail, Linkedin, Facebook, Instagram } from 'lucide-react'
+
 export default function Footer() {
-    return(
-        <footer className="bg-white py-12 px-6">
-                <div className="max-w-7xl mx-auto">
-                <div className="grid md:grid-cols-3 gap-8 items-center mb-8">
-                    <div className="text-[#1e3a5f]">
-                    <p className="font-semibold mb-2">Ventas</p>
-                    <a
-                        href="https://wa.me/523315179175"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center space-x-3 group hover:text-[#1e3a5f] transition-colors duration-300"
-                    >
-                        <Phone className="w-5 h-5 text-[#1e3a5f] group-hover:scale-110 transition-transform duration-300" />
-                        <span className="text-[#1e3a5f] group-hover:text-[#1e3a5f]">(33) 15179175</span>
-                    </a>
-                    </div>
-        
-                    <div className="flex justify-center">
-                    <div className="text-[#1e3a5f] text-10xl font-bold flex flex-col items-center gap-1">
-                        <img src="Nommy.png" alt="Nommy Logo" className="w-24 h-24" />
-                    </div>
-                    </div>
-        
-                    <div className="text-[#1e3a5f] text-right">
-                    <p className="font-semibold mb-2 text-[#1e3a5f]">Email</p>
-                    <p>ventas@nommy.mx</p>
-                    </div>
-                </div>
-        
-                <div className="border-t border-[#4db8c4] pt-8">
-                    <div className="flex justify-between items-center">
-                    <a
-                        href="https://drive.google.com/file/d/1cFTxtE8PW_hOgmomy2i56W1SArO7J-dV/view?usp=sharing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-left font-bold space-x-3 group hover:text-[#1e3a5f] transition-colors duration-300"
-                    >Términos y condiciones</a>
-                    <a
-                        className="hover:text-[#1e3a5f] transition-colors duration-300 text-sm mt-2 sm:mt-0"
-                        href="/terminos"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        
-                        >Aviso de privacidad</a>
-                    <div className="flex gap-4">
-                        <a
-                        href="/aviso"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-[#4db8c4] rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
-                        >
-                        <Linkedin className="w-5 h-5 text-white" />
-                        </a>
-                        
-                        <a
-                        href="https://www.facebook.com/profile.php?id=61578598203669"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-[#4db8c4] rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
-                        >
-                        <Facebook className="w-5 h-5 text-white" />
-                        </a>
-                        <a
-                        href="https://www.instagram.com/nommymexico/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 bg-[#4db8c4] rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
-                        >
-                        <Instagram className="w-5 h-5 text-white" />
-                        </a>
-                        
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </footer>
-    )
+  return (
+    <footer style={{ backgroundColor: '#0f1e2e', color: 'white', padding: '60px 24px 32px' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+
+        {/* Top */}
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '48px', marginBottom: '48px' }}>
+
+          {/* Brand */}
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+              <img src="/Nommy.png" alt="Nommy" style={{ width: '40px', height: '40px' }} />
+              <span style={{ fontSize: '20px', fontWeight: 700 }}>Nommy</span>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '10px' }}>
+              {[
+                { href: 'https://www.linkedin.com/in/nommy-m%C3%A9xico-a797a1376/', icon: <Linkedin size={16} /> },
+                { href: 'https://www.facebook.com/profile.php?id=61578598203669', icon: <Facebook size={16} /> },
+                { href: 'https://www.instagram.com/nommymexico/', icon: <Instagram size={16} /> },
+              ].map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
+                  style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#1e3a5f', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4db8a8', transition: 'background 0.2s' }}
+                  onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#4db8a8', e.currentTarget.style.color = 'white')}
+                  onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#1e3a5f', e.currentTarget.style.color = '#4db8a8')}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <p style={{ fontSize: '12px', fontWeight: 700, color: '#4db8a8', letterSpacing: '0.1em', marginBottom: '16px' }}>LEGAL</p>
+            {[
+              { label: 'Términos y condiciones', href: 'https://nommy.mx/terminos' },
+              { label: 'Aviso de privacidad', href: 'https://nommy.mx/aviso' },
+            ].map((l, i) => (
+              <a key={i} href={l.href} target="_blank" rel="noopener noreferrer"
+                style={{ display: 'block', fontSize: '14px', color: '#94a3b8', textDecoration: 'none', marginBottom: '10px', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'white')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p style={{ fontSize: '12px', fontWeight: 700, color: '#4db8a8', letterSpacing: '0.1em', marginBottom: '16px' }}>CONTACTO</p>
+            <a href="https://wa.me/523315179175" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#94a3b8', textDecoration: 'none', marginBottom: '10px' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
+            >
+              <Phone size={14} /> (33) 15179175
+            </a>
+            <a href="mailto:ventas@nommy.mx"
+              style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#94a3b8', textDecoration: 'none' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'white')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#94a3b8')}
+            >
+              <Mail size={14} /> ventas@nommy.mx
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div style={{ borderTop: '1px solid #1e3a5f', paddingTop: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <p style={{ fontSize: '13px', color: '#475569', margin: 0 }}>
+            © {new Date().getFullYear()} Nommy. Todos los derechos reservados.
+          </p>
+         
+        </div>
+      </div>
+    </footer>
+  )
 }
