@@ -3,8 +3,9 @@ import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import Navbar from "@/components/Navbar"
 import Script from "next/script";
-
+import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 const poppins = Poppins({
   weight: ["400", "600", "700", "800"],
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${inter.className} ${poppins.variable} font-sans antialiased`}>
+        <Navbar/>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-369HYF2S7P"
           strategy="afterInteractive"
@@ -58,9 +60,9 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-TXWWB6FR');
           `}
         </Script>
-        {children}
         <Analytics />
-        
+        {children}
+        <Footer />
       </body>
     </html>
   )
