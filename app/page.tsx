@@ -331,9 +331,9 @@ export default function HomePage() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '16px' }}>
             {[
-              { text: '"Nommy nos permitió duplicar nuestra cartera de clientes de nómina sin contratar más personal operativo. La estabilidad del IDSE es impresionante."', name: 'Lic. Roberto Sánchez', role: 'Socio Director en RS Contadores' },
-              { text: '"El soporte técnico es excepcional. Siempre están actualizados con los cambios del SAT y el IMSS, lo que me da mucha tranquilidad."', name: 'CP. María Elena Ruiz', role: 'Consultora Fiscal Independiente' },
-              { text: '"La interfaz es tan intuitiva que mi equipo aprendió a usarla en un día. Los reportes automatizados nos ahorran horas de Excel."', name: 'Dr. Alejandro G.', role: 'Despacho Global Tax' },
+              { text: '"Nommy nos permitió duplicar nuestra cartera de clientes de nómina sin contratar más personal operativo. La estabilidad del IDSE es impresionante."', name: 'Lic. Roberto Sánchez', role: 'CGAF' },
+              { text: '"El soporte técnico es excepcional. Siempre están actualizados con los cambios del SAT y el IMSS, lo que me da mucha tranquilidad."', name: 'CP. María Elena Ruiz', role: 'SimplyTechnologies' },
+              { text: '"La interfaz es tan intuitiva que mi equipo aprendió a usarla en un día. Los reportes automatizados nos ahorran horas de Excel."', name: 'Dr. Alejandro G.', role: 'Bris Sandoval' },
             ].map((t, i) => (
               <div key={i} style={{ backgroundColor: '#243650', borderRadius: '14px', padding: '24px', textAlign: 'left', border: '1px solid #2d4a6b' }}>
                 <div style={{ display: 'flex', gap: '4px', marginBottom: '12px' }}>
