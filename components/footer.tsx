@@ -46,7 +46,7 @@ export default function Footer() {
 
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <img src="/logoblanco.png" alt="Nommy" style={{ width: '40px', height: '40px' }} />
+              <img src="/logoblanco.png" alt="Nommy" style={{ width: '120px', height: '120px' }} />
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
               {socialLinks.map((s, i) => (
@@ -95,7 +95,7 @@ export default function Footer() {
         {/* Brand */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '12px' }}>
-            <img src="/logoblanco.png" alt="Nommy" style={{ width: '40px', height: '40px' }} />
+            <img src="/logoblanco.png" alt="Nommy" style={{ width: '120px', height: '120px' }} />
             <span style={{ fontSize: '22px', fontWeight: 700 }}>Nommy</span>
           </div>
           <p style={{ fontSize: '14px', color: '#94a3b8', lineHeight: 1.7, margin: '0 0 20px' }}>
