@@ -20,6 +20,7 @@ const LOGOS = [
   { src: "/Factor.png",             alt: "Factor"        },
   { src: "/BrisSandoval.png",       alt: "Bris Sandoval" },
   { src: "/Abogados.png",           alt: "Abogados"      },
+  { src: "/Clarioblanco.png",            alt: "Clario"        },
 ]
 
 export default function HomePage() {
@@ -223,7 +224,7 @@ export default function HomePage() {
                   style={{
                     maxWidth: '100%',
                     maxHeight: '100%',
-                    width: 'auto',
+                    width: '200px',
                     height: 'auto',
                     objectFit: 'contain',
                     opacity: 0.35,
