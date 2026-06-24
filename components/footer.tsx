@@ -30,6 +30,7 @@ export default function Footer() {
   const contactLinks = [
     { label: '(33) 15179175', href: 'https://wa.me/523315179175', icon: <Phone size={14} /> },
     { label: 'ventas@nommy.mx', href: 'mailto:ventas@nommy.mx', icon: <Mail size={14} /> },
+    { label: 'C. Nelson 224, Vallarta Nte., 44690 Guadalajara, Jal.', href: 'https://www.google.com/maps/place/C.+Nelson+224,+Vallarta+Nte.,+44690+Guadalajara,+Jal./data=!4m2!3m1!1s0x8428ae6ec415bec9:0xafe058cfa9d01a24?sa=X&ved=1t:242&ictx=111', icon: <Mail size={14} /> },
   ]
 
   const linkStyle = (hover = false): React.CSSProperties => ({
