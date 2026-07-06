@@ -216,7 +216,7 @@ export default function HomePage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginRight: isMobile ? '40px' : '64px',
+                marginRight: isMobile ? '40px' : '40px',
               }}>
                 <img
                   src={logo.src}
