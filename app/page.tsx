@@ -21,6 +21,9 @@ const LOGOS = [
   { src: "/BrisSandoval.png",       alt: "Bris Sandoval" },
   { src: "/Abogados.png",           alt: "Abogados"      },
   { src: "/Clarioblanco.png",            alt: "Clario"        },
+  { src: "/moresca.png",       alt: "Moresca" },
+  { src: "/Napoles.png",           alt: "Napoles"      },
+  { src: "/BP.png",           alt: "BP"      },
 ]
 
 export default function HomePage() {
